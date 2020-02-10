@@ -25,6 +25,7 @@ body {
 }
 
 .mail {
+  transition: all $ANIM_DURATION $DELAY_AFTER_ANIM ease;
   animation-duration: 1.25s;
   width: $ENVELOPE_WIDTH;
   height: $ENVELOPE_HEIGHT;
@@ -100,9 +101,13 @@ body {
 }
 
 .mail.open {
+  transform: translateY($ENVELOPE_HEIGHT / 3);
+  transition: all $ANIM_DURATION 0 ease;
+
   .cover:before {
     transform: rotateX(180deg);
     transition: all $ANIM_DURATION ease;
+    z-index: 3;
   }
 
   .letter {

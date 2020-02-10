@@ -16,6 +16,8 @@ body {
 }
 
 .mail {
+  -webkit-transition: all 1s 1s ease;
+  transition: all 1s 1s ease;
   -webkit-animation-duration: 1.25s;
           animation-duration: 1.25s;
   width: 500px;
@@ -97,11 +99,19 @@ body {
   font-weight: 900;
 }
 
+.mail.open {
+  -webkit-transform: translateY(116.66667px);
+          transform: translateY(116.66667px);
+  -webkit-transition: all 1s 0 ease;
+  transition: all 1s 0 ease;
+}
+
 .mail.open .cover:before {
   -webkit-transform: rotateX(180deg);
           transform: rotateX(180deg);
   -webkit-transition: all 1s ease;
   transition: all 1s ease;
+  z-index: 3;
 }
 
 .mail.open .letter {

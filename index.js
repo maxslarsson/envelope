@@ -12,6 +12,6 @@ $(document).ready(function() {
   $(".mail").click(function() {
     shaking = !shaking;
     $(".mail").toggleClass("open");
-    setTimeout(shaking_function, 1250);
+    setTimeout(shaking_function, 2500);
   });
 });
