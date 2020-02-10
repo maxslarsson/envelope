@@ -1,0 +1,112 @@
+$ENVELOPE_WIDTH: 500px;
+$ENVELOPE_HEIGHT: 350px;
+$ENVELOPE_BORDER: 20px;
+$LETTER_BORDER: 20px;
+
+$ANIM_DURATION: 1s;
+$DELAY_AFTER_ANIM: 1s;
+
+$AMOUNT_MOVE_UP: $ENVELOPE_HEIGHT / 2.5;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #302929;
+}
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mail {
+  animation-duration: 1.25s;
+  width: $ENVELOPE_WIDTH;
+  height: $ENVELOPE_HEIGHT;
+  background: #ff8789;
+  position: relative;
+  transform-style: preserve-3d;
+  border-bottom-left-radius: $ENVELOPE_BORDER;
+  border-bottom-right-radius: $ENVELOPE_BORDER;
+  cursor: pointer;
+}
+
+.mail:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-left: ($ENVELOPE_WIDTH / 2 - $ENVELOPE_BORDER / 2) solid Transparent;
+  border-right: ($ENVELOPE_WIDTH / 2) solid #ff393c;
+  border-top: ($ENVELOPE_HEIGHT / 2) solid Transparent;
+  border-bottom: ($ENVELOPE_HEIGHT / 2) solid #ff393c;
+  z-index: 5;
+  border-bottom-right-radius: ($ENVELOPE_BORDER / 2);
+}
+
+.mail:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: ($ENVELOPE_WIDTH / 2) solid #ff5355;
+  border-right: ($ENVELOPE_WIDTH / 2 - $ENVELOPE_BORDER / 2) solid Transparent;
+  border-top: ($ENVELOPE_HEIGHT / 2) solid Transparent;
+  border-bottom: ($ENVELOPE_HEIGHT / 2) solid #ff5355;
+  z-index: 4;
+  border-bottom-left-radius: ($ENVELOPE_BORDER / 2);
+}
+
+.cover:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: ($ENVELOPE_WIDTH / 2) solid transparent;
+  border-right: ($ENVELOPE_WIDTH / 2) solid transparent;
+  border-top: ($ENVELOPE_HEIGHT / 2) solid #ff8789;
+  border-bottom: ($ENVELOPE_HEIGHT / 2) solid transparent;
+  z-index: 6;
+  transform-origin: top;
+  transform: rotateX(0deg);
+  transition: all $ANIM_DURATION $DELAY_AFTER_ANIM ease;
+}
+
+.letter {
+  position: absolute;
+  z-index: 3;
+  top: 0px;
+  left: 10px;
+  background: #dedede;
+  width: ($ENVELOPE_WIDTH - 20px);
+  height: ($ENVELOPE_HEIGHT - 20px);
+  border-radius: $LETTER_BORDER;
+  transition: all $ANIM_DURATION ease;
+}
+
+.letter h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  color: #798992;
+  font-weight: 900;
+}
+
+.mail.open {
+  .cover:before {
+    transform: rotateX(180deg);
+    transition: all $ANIM_DURATION ease;
+  }
+
+  .letter {
+    top: -$AMOUNT_MOVE_UP;
+    transition: all $ANIM_DURATION $DELAY_AFTER_ANIM ease;
+  }
+}
