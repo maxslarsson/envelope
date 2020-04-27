@@ -24,6 +24,14 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.slideInLeft {
+  animation-name: slideInLeft;
+}
+
+.tada {
+  animation-name: tada;
+}
+
 .mail {
   transition: all $ANIM_DURATION $DELAY_AFTER_ANIM ease;
   animation-duration: 1.25s;
@@ -72,7 +80,7 @@ body {
   border-right: ($ENVELOPE_WIDTH / 2) solid transparent;
   border-top: ($ENVELOPE_HEIGHT / 2) solid #ff8789;
   border-bottom: ($ENVELOPE_HEIGHT / 2) solid transparent;
-  z-index: 6;
+  z-index: 4;
   transform-origin: top;
   transform: rotateX(0deg);
   transition: all $ANIM_DURATION $DELAY_AFTER_ANIM ease;
@@ -90,12 +98,12 @@ body {
   transition: all $ANIM_DURATION ease;
 }
 
-.letter h1 {
+.letter p {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 80px;
+  font-size: 40px;
   color: #798992;
   font-weight: 900;
 }
@@ -113,5 +121,44 @@ body {
   .letter {
     top: -$AMOUNT_MOVE_UP;
     transition: all $ANIM_DURATION $DELAY_AFTER_ANIM ease;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-300%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
   }
 }

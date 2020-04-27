@@ -1,17 +1,25 @@
 let shaking = true;
+let interval;
 
-function shaking_function() {
+function toggle_interval() {
   if (shaking) {
-    $(".mail").toggleClass("tada");
-    setTimeout(shaking_function, 1250);
+    interval = setInterval(() => $(".mail").toggleClass("tada"), 2000);
+  } else {
+    clearInterval(interval);
   }
 }
 
-$(document).ready(function() {
-  shaking_function();
-  $(".mail").click(function() {
+$(document).ready(() => {
+  $(".mail").addClass("slideInLeft");
+  $(".mail").on("animationend", () => {
+    $(".mail").off("animationend");
+    $(".mail").removeClass("slideInLeft");
+    toggle_interval();
+  });
+  $(".mail").click(() => {
     shaking = !shaking;
+    toggle_interval();
+    $(".mail").removeClass("tada");
     $(".mail").toggleClass("open");
-    setTimeout(shaking_function, 2500);
   });
 });
