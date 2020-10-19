@@ -1,0 +1,72 @@
+$CHECKBOX_SIZE: 30px;
+$LABEL_SIZE: $CHECKBOX_SIZE - 10;
+$CHECK_MARK_SIZE: 15px;
+$BORDER_WIDTH: 5px;
+
+input[type="checkbox"] {
+  position: absolute;
+  visibility: hidden;
+  width: $CHECKBOX_SIZE;
+  height: $CHECKBOX_SIZE;
+}
+
+.checkbox1 {
+  position: absolute;
+  text-align: center;
+}
+
+.checkbox2 {
+  position: absolute;
+  top: 65%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+label {
+  position: relative;
+  display: inline-block;
+  width: $LABEL_SIZE;
+  height: $LABEL_SIZE;
+  background: #efefef;
+  border: $BORDER_WIDTH solid #aaaaaa;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+input[type="checkbox"]:checked + label {
+  border: $BORDER_WIDTH solid #3d9970;
+  animation: confirm 0.15s linear;
+}
+
+input[type="checkbox"]:checked + label:after {
+  content: "\f00c";
+  font-family: FontAwesome;
+  font-size: $CHECK_MARK_SIZE;
+  line-height: $LABEL_SIZE;
+  width: $LABEL_SIZE;
+  height: $LABEL_SIZE;
+  background: #2ecc40;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #ffffff;
+}
+
+@keyframes confirm {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  75% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
